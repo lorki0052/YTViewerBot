@@ -32,3 +32,5 @@ SocksPort 9052
 SocksPort 9053
 SocksPort 9054
 SocksPort 9055
+
+4) launch from "launcher.ps1" (but u need edit him with correct path to project)
