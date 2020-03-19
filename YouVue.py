@@ -14,7 +14,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from progress.bar import Bar
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
-from fake_useragent import UserAgent
 
 
 number_of_viewers = 0
@@ -39,8 +38,7 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
         options.add_argument("--disable-gpu")
         
     options.add_argument('window-size=1920x1080')
-    ua = UserAgent()
-    options.add_argument('--user-agent='+ua.random)
+    options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"')
   
     #LOG-LEVEL
     # INFO = 0, 
