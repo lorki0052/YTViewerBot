@@ -28,17 +28,17 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     
     options = Options()
     #options.headless = True
-    options.add_argument("--incognito")
-    options.add_argument("--ignore-certificate-errors")
+    #options.add_argument("--incognito")
+    #options.add_argument("--ignore-certificate-errors")
     options.add_argument("--mute-audio")
-    options.add_argument('--blink-settings=imagesEnabled=false')
+    #options.add_argument('--blink-settings=imagesEnabled=false')
 
     if "n" in show_browser:
         options.add_argument("--headless")
-        options.add_argument("--disable-gpu")
+        #options.add_argument("--disable-gpu")
         
-    options.add_argument('window-size=1920x1080')
-    options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"')
+    #options.add_argument('window-size=1920x1080')
+    #options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"')
   
     #LOG-LEVEL
     # INFO = 0, 
