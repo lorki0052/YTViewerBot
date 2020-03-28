@@ -29,7 +29,7 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     options = Options()
     #options.headless = True
     #options.add_argument("--incognito")
-    options.add_argument("--ignore-certificate-errors")
+    #options.add_argument("--ignore-certificate-errors")
     options.add_argument("--mute-audio")
     #options.add_argument('--blink-settings=imagesEnabled=false')
 
@@ -50,7 +50,9 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     options.add_argument('--proxy-server=%s' % PROXY)
 
     driver = webdriver.Chrome(options=options, executable_path=r'chromedriver.exe')
-    driver.get(site_url + "?autoplay=1")
+    #driver.get(site_url + "?autoplay=1")
+    driver.get(site_url)
+
 
     #Если открылся и вопсроизвелся ютуб - return number_of_view (1)
     #driver.refresh()
