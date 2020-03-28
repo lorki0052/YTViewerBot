@@ -49,7 +49,7 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     options.add_argument("--log-level=3")
     options.add_argument('--proxy-server=%s' % PROXY)
 
-    driver = webdriver.Chrome(chrome_options=options, executable_path=r'chromedriver.exe')
+    driver = webdriver.Chrome(options=options, executable_path=r'chromedriver.exe')
     driver.get(site_url + "?autoplay=1")
 
     #Если открылся и вопсроизвелся ютуб - return number_of_view (1)
