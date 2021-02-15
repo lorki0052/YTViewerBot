@@ -33,4 +33,6 @@ SocksPort 9053
 SocksPort 9054
 SocksPort 9055
 
-4)launch from "launcher.ps1" (but u need edit him with correct path to project)
+4)chromedriver.exe version should match your [google chrome] version
+5)Change [Path_to] 
+5)launch from "launcher.ps1" (but u need edit him with correct path to project)
