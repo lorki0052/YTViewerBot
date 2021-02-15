@@ -23,22 +23,15 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     # To use Tor's SOCKS proxy server with chrome, include the socks protocol in the scheme with the --proxy-server option
     # PROXY = "socks5://127.0.0.1:9150" # IP:PORT or HOST:PORT
 
-    torexe = os.popen(r'C:\Users\Amaimon\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe')
+    torexe = os.popen(r'[Path_to]\tor.exe')
     PROXY = "socks5://localhost:" + proxy_port # IP:PORT or HOST:PORT
     
     options = Options()
-    #options.headless = True
-    #options.add_argument("--incognito")
     options.add_argument("--ignore-certificate-errors")
     options.add_argument("--mute-audio")
-    #options.add_argument('--blink-settings=imagesEnabled=false')
 
     if "n" in show_browser:
         options.add_argument("--headless")
-        #options.add_argument("--disable-gpu")
-        
-    #options.add_argument('window-size=1920x1080')
-    #options.add_argument('--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"')
   
     #LOG-LEVEL
     # INFO = 0, 
@@ -50,21 +43,16 @@ def create_viewer(site_url, time_view, proxy_port, show_browser):
     options.add_argument('--proxy-server=%s' % PROXY)
 
     driver = webdriver.Chrome(options=options, executable_path=r'chromedriver.exe')
-    #driver.get(site_url + "?autoplay=1")
     driver.get(site_url)
 
-
-    #Если открылся и вопсроизвелся ютуб - return number_of_view (1)
-    #driver.refresh()
     driver.implicitly_wait(20)
     if(len(driver.find_elements_by_xpath("//*[@id=\"movie_player\"]"))>0):
-        #автовопросизведение ролика
         driver.refresh()
         driver.find_element_by_xpath("//*[@id=\"movie_player\"]").click()
         number_of_viewers+=1
 
     time.sleep(int(time_view))
-    #ОТКЛЮЧИТЬ НА РЕЛИЗЕ
+    #check the headless mode is working
     #driver.save_screenshot(str(random.random())+".png")
 
     driver.close()
@@ -82,7 +70,7 @@ def renew_tor_identity():
             resp = s.recv(1024)
 
             if resp.startswith(b'250'):
-                print (colored("IP-адреса сменились успешно", "green"))
+                print (colored("IP was changed", "green"))
             else:
                 print ("response 2:", resp)
 
@@ -90,10 +78,10 @@ def renew_tor_identity():
             print ("response 1:", resp)
 
     except Exception as e:
-        print (colored("Невозможно сменить IP-адреса: ", e ) , "red")
+        print (colored("Can`t changing IP: ", e ) , "red")
 
 def progress_bar_info(time_view):
-    bar = Bar(colored('Идет просмотр(с):', "green"), max=int(time_view))
+    bar = Bar(colored('Viewing(sec):', "green"), max=int(time_view))
     for i in range(int(time_view)):
         time.sleep(1)
         bar.next()
@@ -112,10 +100,10 @@ def main():
  ----------------------------------------                                                          
     ''')
     #number_of_viewers = 0
-    print(colored("Запусти отдельно tor-браузер!\n", "yellow"))
-    site_url = input("Введите Youtube - URL (https://youtu.be/ID_VIDEO):\n")
-    time_view = input("Укажите время просмотра в секундах:\n")
-    show_browser = input("Отображать окна браузера?(y/n):\n")
+    print(colored("Don`t forget launch the tor-browser!\n", "yellow"))
+    site_url = input("Enter Youtube - URL (https://youtu.be/ID_VIDEO):\n")
+    time_view = input("Enter viewing time in seconds:\n")
+    show_browser = input("Display browser windows?(y/n):\n")
 
     while True:
         viewer = Thread(target=create_viewer, args=(site_url, time_view, "9052", show_browser,))
@@ -146,7 +134,7 @@ def main():
 
         info.join()
 
-        print (colored("Количество просмотров: " + str(number_of_viewers), "green"))
+        print (colored("Number of views: " + str(number_of_viewers), "green"))
         renew_tor_identity()
         time.sleep(20)
 
